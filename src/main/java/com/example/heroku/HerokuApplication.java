@@ -47,7 +47,7 @@ public class HerokuApplication {
   @Autowired
   private DataSource dataSource;
 
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     SpringApplication.run(HerokuApplication.class, args);
   }
 
@@ -56,7 +56,7 @@ public class HerokuApplication {
     return "index";
   }
 
-  @RequestMapping("/db")
+  @RequestMapping("/dba")
   String db(Map<String, Object> model) {
     try (Connection connection = dataSource.getConnection()) {
       Statement stmt = connection.createStatement();
@@ -64,7 +64,7 @@ public class HerokuApplication {
       stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
       ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
 
-      ArrayList<String> output = new ArrayList<String>();
+      ArrayList<String> output = new ArrayList<>();
       while (rs.next()) {
         output.add("Read from DB: " + rs.getTimestamp("tick"));
       }
@@ -78,7 +78,7 @@ public class HerokuApplication {
   }
 
   @Bean
-  public DataSource dataSource() throws SQLException {
+  public DataSource dataSource() {
     if (dbUrl == null || dbUrl.isEmpty()) {
       return new HikariDataSource();
     } else {
