@@ -1,0 +1,12 @@
+name: run-ci-with-test-job
+on: [push]
+jobs:
+    run-test:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-java@v2
+          with:
+            distribution: 'adopt'
+            java-version: '11'
+        - run: ./gradlew test
