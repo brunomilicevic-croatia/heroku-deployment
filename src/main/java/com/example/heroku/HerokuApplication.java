@@ -23,6 +23,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 @Controller
+@EnableScheduling
 @SpringBootApplication
 public class HerokuApplication {
 
@@ -85,4 +88,11 @@ public class HerokuApplication {
     }
   }
 
+  /**
+   * Send a wake-up signal if instance is idling
+   */
+  @Scheduled(fixedRateString = "PT30M")
+  public void wakeupIdleInstance() {
+    System.out.println("Wake Up!!!!");
+  }
 }
