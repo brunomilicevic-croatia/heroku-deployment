@@ -1,4 +1,4 @@
-package com.example.heroku;
+package com.dept.java.demo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
