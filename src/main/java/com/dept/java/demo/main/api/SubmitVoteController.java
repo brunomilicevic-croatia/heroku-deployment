@@ -1,8 +1,8 @@
 package com.dept.java.demo.main.api;
 
 import com.dept.java.demo.application.vote.VoteRequest;
-import com.dept.java.demo.domain.Poll;
-import com.dept.java.demo.infrastructure.repository.PollRepository;
+import com.dept.java.demo.domain.polls.Poll;
+import com.dept.java.demo.application.common.interfaces.PollRepository;
 import com.dept.java.demo.infrastructure.repository.VoteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

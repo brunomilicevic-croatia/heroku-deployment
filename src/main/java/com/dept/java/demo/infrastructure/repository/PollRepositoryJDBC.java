@@ -1,7 +1,7 @@
 package com.dept.java.demo.infrastructure.repository;
 
-import com.dept.java.demo.domain.Option;
-import com.dept.java.demo.domain.Poll;
+import com.dept.java.demo.domain.polls.Option;
+import com.dept.java.demo.domain.polls.Poll;
 import com.dept.java.demo.domain.Question;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

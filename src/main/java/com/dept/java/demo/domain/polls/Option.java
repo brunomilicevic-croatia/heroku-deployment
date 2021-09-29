@@ -1,5 +1,6 @@
-package com.dept.java.demo.domain;
+package com.dept.java.demo.domain.polls;
 
+import com.dept.java.demo.domain.Question;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;

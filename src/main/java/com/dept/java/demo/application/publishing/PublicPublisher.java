@@ -1,7 +1,7 @@
 package com.dept.java.demo.application.publishing;
 
-import com.dept.java.demo.domain.Poll;
-import com.dept.java.demo.infrastructure.repository.PollRepository;
+import com.dept.java.demo.domain.polls.Poll;
+import com.dept.java.demo.application.common.interfaces.PollRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;

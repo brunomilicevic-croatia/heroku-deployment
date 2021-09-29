@@ -1,5 +1,6 @@
-package com.dept.java.demo.domain;
+package com.dept.java.demo.domain.polls;
 
+import com.dept.java.demo.domain.Question;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.GenericGenerator;

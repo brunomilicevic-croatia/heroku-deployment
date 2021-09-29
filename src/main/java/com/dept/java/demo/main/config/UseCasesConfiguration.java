@@ -1,42 +1,49 @@
 package com.dept.java.demo.main.config;
 
-import com.dept.java.demo.application.polls.CreateNew;
-import com.dept.java.demo.application.polls.GetAll;
-import com.dept.java.demo.application.polls.GetById;
+import com.dept.java.demo.application.common.interfaces.PollRepository;
+import com.dept.java.demo.application.polls.CreatePoll;
+import com.dept.java.demo.application.polls.GetAllPolls;
+import com.dept.java.demo.application.polls.GetPollById;
 import com.dept.java.demo.application.publishing.PollPublisher;
-import com.dept.java.demo.infrastructure.repository.PollRepository;
+import com.dept.java.demo.infrastructure.repository.PollJpaRepository;
+import com.dept.java.demo.infrastructure.repository.PollRepositoryImpl;
+import com.dept.java.demo.infrastructure.repository.VoteRepository;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.sql.DataSource;
+import javax.validation.constraints.NotNull;
+
 @Configuration
-public class UseCasesConfiguration implements BeanDefinitionRegistryPostProcessor {
+public class UseCasesConfiguration {
 
-    public static void loadUseCases(ConfigurableApplicationContext context) {
-        CreateNew createNew = new CreateNew();
-        GetAll getAll = new GetAll();
-        GetById getById = new GetById();
-        context.getBeanFactory().registerSingleton(CreateNew.class.getName(), createNew);
-        context.getBeanFactory().registerSingleton("getAll", getAll);
-        context.getBeanFactory().registerSingleton("getById", getById);
+    @Bean
+    public PollRepository pollRepositoryBean(PollJpaRepository jpaRepository) {
+        return new PollRepositoryImpl(jpaRepository);
     }
 
-    @Override
-    public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
+    @Bean
+    public CreatePoll createPollBean(PollRepository pollRepository) {
+        return new CreatePoll(pollRepository);
     }
 
-    @Override
-    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        CreateNew createNew = new CreateNew();
-        GetAll getAll = new GetAll();
-        GetById getById = new GetById();
-        PollPublisher pollPublisher = new PollPublisher();
-        beanFactory.registerSingleton(CreateNew.class.getName(), createNew);
-        beanFactory.registerSingleton(GetAll.class.getName(), getAll);
-        beanFactory.registerSingleton(GetById.class.getName(), getById);
-        beanFactory.registerSingleton(PollPublisher.class.getName(), pollPublisher);
+    @Bean
+    public GetAllPolls getAllPollsBean() {
+        return new GetAllPolls();
+    }
+
+    @Bean
+    public GetPollById getPollByIdBean() {
+        return new GetPollById();
+    }
+
+    @Bean
+    public PollPublisher pollPublisherBean() {
+        return new PollPublisher();
     }
 }

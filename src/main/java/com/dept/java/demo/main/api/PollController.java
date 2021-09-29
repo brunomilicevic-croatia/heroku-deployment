@@ -1,7 +1,8 @@
 package com.dept.java.demo.main.api;
 
 import com.dept.java.demo.application.ValidationFailed;
-import com.dept.java.demo.domain.Poll;
+import com.dept.java.demo.application.polls.CreatePoll;
+import com.dept.java.demo.domain.polls.Poll;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +16,9 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class PollController {
 
-    private final CreateNew createNew;
-    private final GetAll getAll;
-    private final GetById getById;
+    private final CreatePoll createNew;
+    private final GetAllPolls getAll;
+    private final GetPollById getPollById;
 
     @PostMapping
     public ResponseEntity<Poll> createNewPoll(@Valid @RequestBody Poll newPoll) throws ValidationFailed {
@@ -32,7 +33,7 @@ public class PollController {
 
     @GetMapping("/{pollId}")
     public ResponseEntity<Poll> getPollById(@PathVariable("pollId") UUID pollId) {
-        return getById.execute(pollId)
+        return getPollById.execute(pollId)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }

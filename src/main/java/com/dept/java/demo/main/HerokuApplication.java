@@ -16,20 +16,24 @@
 
 package com.dept.java.demo.main;
 
-import com.dept.java.demo.main.config.UseCasesConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
+@EnableJpaRepositories({"com.dept.java.demo.infrastructure.repository"})
+@EntityScan({"com.dept.java.demo.domain"})
+@ComponentScan({"com.dept.java.demo.infrastructure"})
 @EnableTransactionManagement
 @EnableScheduling
 public class HerokuApplication {
 
   public static void main(String[] args) {
-    ConfigurableApplicationContext context = SpringApplication.run(HerokuApplication.class, args);
+    SpringApplication.run(HerokuApplication.class, args);
   }
 
 }
