@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class HerokuApplicationTests {
 
@@ -16,11 +17,6 @@ public class HerokuApplicationTests {
 	public void contextLoads() {
 	}
 
-	@Test
-	public void shouldFailSometimes() {
-		Random r = new Random();
-		assertEquals(0, r.nextInt(99) % 2);
-	}
 
 }
 

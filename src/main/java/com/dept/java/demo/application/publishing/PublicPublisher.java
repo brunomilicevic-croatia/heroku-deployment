@@ -18,8 +18,8 @@ public class PublicPublisher implements Publisher {
     public void execute(UUID pollId, PublishRequest publishRequest) {
         Poll poll = pollRepository.findById(pollId)
                 .orElseThrow(() -> new IllegalStateException("Poll not found"));
-        poll.setPublishFrom(publishRequest.getPublishFrom());
-        poll.setPublishTo(publishRequest.getPublishTo());
+//        poll.setPublishFrom(publishRequest.getPublishFrom());
+//        poll.setPublishTo(publishRequest.getPublishTo());
         pollRepository.save(poll);
     }
 

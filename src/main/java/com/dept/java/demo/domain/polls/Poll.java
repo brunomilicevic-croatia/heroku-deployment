@@ -34,13 +34,15 @@ public class Poll {
     @Valid
     @ToString.Exclude
     private List<Question> questions;
-    private Instant publishFrom;
-    private Instant publishTo;
-
-    public boolean isPublished() {
-        Instant now = Instant.now();
-        return now.isAfter(publishFrom) && now.isBefore(publishTo);
-    }
+//    @Transient
+//    private Instant publishFrom;
+//    @Transient
+//    private Instant publishTo;
+//
+//    public boolean isPublished() {
+//        Instant now = Instant.now();
+//        return now.isAfter(publishFrom) && now.isBefore(publishTo);
+//    }
 
     @Override
     public boolean equals(Object o) {

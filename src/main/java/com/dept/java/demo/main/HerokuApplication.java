@@ -21,19 +21,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @EnableJpaRepositories({"com.dept.java.demo.infrastructure.repository"})
 @EntityScan({"com.dept.java.demo.domain"})
-@ComponentScan({"com.dept.java.demo.infrastructure"})
+@ComponentScan({"com.dept.java.demo.infrastructure", "com.dept.java.demo.main"})
 @EnableTransactionManagement
-@EnableScheduling
 public class HerokuApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(HerokuApplication.class, args);
+    SpringApplication application = new SpringApplication(HerokuApplication.class);
+    application.setLazyInitialization(true);
+    application.run(args);
   }
 
 }
