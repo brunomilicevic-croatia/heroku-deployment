@@ -7,6 +7,7 @@ import com.dept.java.demo.application.polls.GetPollById;
 import com.dept.java.demo.application.publishing.PollPublisher;
 import com.dept.java.demo.infrastructure.repository.PollJpaRepository;
 import com.dept.java.demo.infrastructure.repository.PollRepositoryImpl;
+import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,8 +15,8 @@ import org.springframework.context.annotation.Configuration;
 public class UseCasesConfiguration {
 
     @Bean
-    public PollRepository pollRepositoryBean(PollJpaRepository jpaRepository) {
-        return new PollRepositoryImpl(jpaRepository);
+    public PollRepository pollRepositoryBean(PollJpaRepository jpaRepository, DataSource dataSource) {
+        return new PollRepositoryImpl(jpaRepository, dataSource);
     }
 
     @Bean

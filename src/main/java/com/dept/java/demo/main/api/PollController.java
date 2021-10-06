@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.dept.java.demo.application.polls.*;
 
-import javax.validation.Valid;
 import java.util.UUID;
 
 @RestController
@@ -21,7 +20,7 @@ public class PollController {
     private final GetPollById getPollById;
 
     @PostMapping
-    public ResponseEntity<Poll> createNewPoll(@Valid @RequestBody Poll newPoll) throws ValidationFailed {
+    public ResponseEntity<Poll> createNewPoll(@RequestBody Poll newPoll) throws ValidationFailed {
         createNew.execute(newPoll);
         return ResponseEntity.ok(newPoll);
     }
