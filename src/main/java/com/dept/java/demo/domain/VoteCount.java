@@ -1,10 +1,9 @@
 package com.dept.java.demo.domain;
 
-import lombok.Data;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import lombok.Data;
 
 @Data
 public class VoteCount {

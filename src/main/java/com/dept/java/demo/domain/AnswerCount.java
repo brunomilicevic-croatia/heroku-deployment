@@ -1,8 +1,7 @@
 package com.dept.java.demo.domain;
 
-import lombok.Value;
-
 import java.util.UUID;
+import lombok.Value;
 
 @Value
 public class AnswerCount {

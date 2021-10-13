@@ -1,11 +1,18 @@
 package com.dept.java.demo.infrastructure.repository;
 
-import com.dept.java.demo.domain.polls.Poll;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.dept.java.demo.domain.Poll;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
 
 @Repository
-public interface PollJpaRepository extends JpaRepository<Poll, UUID> {
+public interface PollJpaRepository {
+
+    Poll save(Poll poll);
+
+    Optional<Poll> findById(UUID pollId);
+
+    List<Poll> findAll();
 }

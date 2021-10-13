@@ -1,11 +1,11 @@
 package com.dept.java.demo.domain;
 
-import lombok.Data;
-
 import java.util.UUID;
+import lombok.Data;
 
 @Data
 public class QuestionAnswer {
+
     private UUID questionId;
     private UUID choosenOptionId;
 }
